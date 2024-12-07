@@ -8,16 +8,38 @@ const io = new Server(server);
 
 app.use(express.static("public")); // Serve static files from the 'public' folder
 
+const nicknames = new Set(); // Store active nicknames
+
 io.on("connection", (socket) => {
     console.log("A user connected");
 
-    // Broadcast messages to all connected users
-    socket.on("chat message", (msg) => {
-        io.emit("chat message", msg);
+    let userNickname = null;
+
+    // Handle nickname submission
+    socket.on("set nickname", (nickname, callback) => {
+        if (nicknames.has(nickname)) {
+            callback({ success: false, message: "Nickname already in use!" });
+        } else {
+            userNickname = nickname;
+            nicknames.add(nickname);
+            callback({ success: true, nickname });
+            socket.broadcast.emit("user joined", `${nickname} has joined the chat!`);
+        }
     });
 
-    // Notify when a user disconnects
+    // Handle chat messages
+    socket.on("chat message", (msg) => {
+        if (userNickname) {
+            io.emit("chat message", `${userNickname}: ${msg}`);
+        }
+    });
+
+    // Handle disconnection
     socket.on("disconnect", () => {
+        if (userNickname) {
+            nicknames.delete(userNickname);
+            socket.broadcast.emit("user left", `${userNickname} has left the chat.`);
+        }
         console.log("A user disconnected");
     });
 });
