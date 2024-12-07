@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div id="login-container">
+        <h2>Enter Your Nickname</h2>
+        <form id="login-form">
+            <input id="nickname-input" type="text" placeholder="Nickname" required>
+            <button type="submit">Join Chat</button>
+        </form>
+        <p id="error-message"></p>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>
