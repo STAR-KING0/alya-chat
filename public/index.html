@@ -7,13 +7,23 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="chat-container">
+    <div id="login-container">
+        <h2>Enter Your Nickname</h2>
+        <form id="login-form">
+            <input id="nickname-input" type="text" placeholder="Nickname" required>
+            <button type="submit">Join</button>
+        </form>
+        <p id="error-message"></p>
+    </div>
+
+    <div id="chat-container" style="display: none;">
         <div id="messages"></div>
         <form id="chat-form">
             <input id="message-input" type="text" placeholder="Type a message..." autocomplete="off" required>
             <button type="submit">Send</button>
         </form>
     </div>
+
     <script src="/socket.io/socket.io.js"></script>
     <script src="script.js"></script>
 </body>

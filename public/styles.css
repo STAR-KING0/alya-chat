@@ -9,32 +9,28 @@ body {
     background-color: #f4f4f4;
 }
 
+#login-container,
 #chat-container {
     width: 400px;
     background: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
-    overflow: hidden;
+    padding: 20px;
+    text-align: center;
 }
 
-#messages {
-    height: 300px;
-    overflow-y: scroll;
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
+#login-container h2 {
+    margin-bottom: 20px;
 }
 
-#messages div {
-    margin-bottom: 10px;
-}
-
+#login-form,
 #chat-form {
     display: flex;
-    padding: 10px;
+    flex-direction: column;
 }
 
-#message-input {
-    flex: 1;
+input {
+    margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -42,7 +38,6 @@ body {
 
 button {
     padding: 10px;
-    margin-left: 10px;
     border: none;
     background: #007bff;
     color: white;
@@ -52,4 +47,27 @@ button {
 
 button:hover {
     background: #0056b3;
+}
+
+#error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+#chat-container {
+    display: none;
+}
+
+#messages {
+    height: 300px;
+    overflow-y: scroll;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+#messages div {
+    margin-bottom: 10px;
 }
